@@ -30,7 +30,10 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/testavi_logo.png",
+    "dark": "/images/testavi_logo.png"
+  },
+  "modeToggle": {
+    "default": "light"
   }
 }
