@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Testavi Documentation",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/images/favicon.png",
   "navigation": {
     "tabs": [
       {
@@ -30,7 +30,7 @@
     ]
   },
   "logo": {
-    "light": "/images/testavi_logo.png",
+    "light": "/images/512x512-testavi-logo.png",
     "dark": "/images/testavi_logo.png"
   },
   "modeToggle": {
