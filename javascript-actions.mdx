@@ -1,0 +1,66 @@
+---
+title: 'JavaScript Actions'
+description: 'Guide to using JavaScript steps and custom functions in Testavi tests'
+---
+
+JavaScript actions allow you to execute custom JavaScript code during your test execution. This powerful feature enables complex interactions, data manipulation, and custom validations that may not be covered by standard actions.
+
+## Steps
+
+### 1. Add a JavaScript Action
+
+Begin by typing `//` to open the Javascript interface.
+
+### 2. Write Your JavaScript Code
+
+Write custom Javascript code, with support for synchronous and asynchronous functions, as well as multi-line Javascript code.
+
+### 3. Execute Code and View Results
+
+After executing your JavaScript code, you can view the output of your JavaScript execution, any returned values from your code, and execution status and completion information.
+
+## Using Javascript with Variables
+
+You can write Javascript actions with extracted variables. These variables will be stored under `env`.
+
+Example of a Javascript action with an extracted variable.
+
+## JavaScript Code Examples
+
+Here are some common examples of JavaScript actions:
+
+```javascript
+// Navigate to a new page
+window.location = "https://example.com"
+
+// Refresh the current page
+window.location.reload()
+
+// Make an API call
+const response = await fetch('https://api.example.com/data', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+const data = await response.json();
+
+// Manipulate DOM elements
+document.querySelector('.my-element').click()
+```
+
+## Best Practices
+
+- Keep your JavaScript code focused and specific to the task
+- Use async/await for asynchronous operations
+- Handle potential errors with try/catch blocks
+- Add comments to explain complex logic
+- Test your JavaScript code thoroughly before adding it to your test suite
+
+## Important Notes
+
+- JavaScript actions run in the context of the current page
+- You have access to the full browser JavaScript API
+- Returned values are stored and visible in test steps
+- Multi-line code is supported
+- Both synchronous and asynchronous functions can be used

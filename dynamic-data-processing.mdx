@@ -1,0 +1,44 @@
+---
+title: 'Dynamic Data Processing'
+---
+
+## Best Practices
+
+### Meaningful Variable Names
+
+- Use UPPERCASE for extracted or random variables
+- Use UNIQUE names for all variables
+- Choose descriptive names that indicate the data's purpose
+- Example: `USER_EMAIL`, `ORDER_TOTAL`, `PRODUCT_ID`
+
+### Extraction Timing
+
+- Extract data as soon as it becomes available
+- Verify the extracted data before using it
+- Consider adding waits before extraction if data is dynamic
+
+### Error Handling
+
+Add verification after extraction.
+
+## Troubleshooting
+
+Common issues and solutions when working with extractions:
+
+### Data Not Found
+
+- Ensure the element is visible before extraction
+- Check if dynamic content has loaded
+- Verify selector accuracy
+
+### Invalid Data Format
+
+- Add verification steps after extraction
+- Use JavaScript for data cleaning if needed
+- Adding wait steps for dynamic content
+
+### Variable Scope
+
+- Variables are available throughout the test
+- Use unique names to avoid conflicts
+- Consider prefixing variables for clarity

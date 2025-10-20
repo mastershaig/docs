@@ -1,0 +1,157 @@
+---
+title: 'Discrete Actions'
+description: 'Overview of all available discrete actions'
+---
+
+## Click
+
+Testavi Agent intelligently handles click interactions across your application with precision and reliability.
+
+### Common Use Cases
+
+- **Form Submission**
+- **Navigation**
+- **Modal Interactions**
+- **Table Operations**
+
+### Best Practices
+
+- Be as specific as possible in element descriptions
+- Include surrounding context when targeting dynamic elements
+- Consider using Wait actions before clicking on dynamic content
+- Verify the click result when critical to test flow
+
+<Warning>
+Avoid using generic descriptions like "Click the button". Always provide enough context for Testavi to identify the correct element reliably.
+</Warning>
+
+### Troubleshooting
+
+**Element Not Found**
+
+If Testavi can't find the element:
+- Check if the element is visible in the viewport
+- Ensure the description matches exactly
+- Consider adding more context
+- Use Wait actions if element loads dynamically
+
+**Wrong Element Clicked**
+
+If Testavi clicks the wrong element:
+- Add more specific context
+- Include nearby text or landmarks
+- Specify element type explicitly
+
+## Hover
+
+Hover actions simulate moving the mouse cursor over specific elements on the page.
+
+## Scroll
+
+The scroll action allows users to smoothly navigate through content by moving vertically or horizontally on a webpage.
+
+### Basic Usage
+
+Scroll vertically and horizontally.
+
+- **Scrolling vertically**
+- **Scrolling horizontally**
+
+### For Inner Scrolls
+
+First hover on the scrollable container, then scroll.
+
+### Best Practices
+
+- The Testavi Agent will decide on a rough ballpark amount to scroll the page by based on your prompt. If the prompt was to scroll all the way to the bottom of the page, the Testavi Agent is likely to scroll the page by a larger amount (e.g. the entire viewport)
+- It is currently heavily recommended to give numerical pixel values for scrolls (this will make tests more reliable!)
+
+## Select
+
+The Select action can be used in two different scenarios:
+- **System Dropdowns (Native)**
+- **Custom Dropdowns**
+
+### System Dropdowns
+
+The Select action should ONLY be used for system (native) dropdowns.
+
+Example of a system (native) dropdown.
+
+### Custom Dropdowns
+
+Custom dropdowns require a different approach, either through click actions or typing actions.
+
+Example of a custom dropdown, which has clicking and typing functionality.
+
+#### 1. Handle Custom Dropdowns with Click Actions
+
+Use click actions to interact with custom dropdown elements.
+
+#### 2. Handle Custom Dropdowns with Typing Actions
+
+Use typing actions to filter or search within custom dropdowns.
+
+## Wait
+
+A wait function pauses the execution of a script or action for a specified duration, allowing for synchronization or delays in processing within an application.
+
+### Dynamic AI Wait
+
+The AI agent automatically determines optimal wait duration based on page state and context.
+
+**Ideal for:**
+- Standard page load operations
+- Simple UI transitions and animations
+- Dynamic content loading
+
+Example of dynamic AI wait.
+
+### Explicit Wait
+
+Specify an exact duration for the agent to wait, ensuring precise timing control.
+
+**Ideal for:**
+- Complex loading operations
+- Third-party integrations
+- Heavy data processing tasks
+
+Example of explicit wait.
+
+## Type
+
+The type action allows you to input text into form fields, search boxes, and other text input elements.
+
+### Default Behavior
+
+By default, the agent will:
+- Clear any existing text in the target field
+- Type the specified text
+- Wait for the text to be fully entered
+
+The agent handles all these steps in a single action, making the typing process smooth and efficient.
+
+### Syntax Variations
+
+**Basic Typing**
+
+Clears existing text and types new text.
+
+**Type with Enter**
+
+Types text and simulates Enter key press.
+
+**Explicit Clear**
+
+Clear and type [text] in the [field name] field.
+
+**Preserve Existing Text**
+
+Appends text without clearing.
+
+### Best Practices
+
+- Clearly specify the target field using its label or placeholder text
+- Use descriptive field names that match what's visible on the page
+- Consider whether existing text should be cleared or preserved
+- Mention if Enter key press is needed after typing

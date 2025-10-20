@@ -1,0 +1,46 @@
+---
+title: 'Frequently Asked Questions'
+---
+
+## How do you handle auth states?
+
+Check out this page, where we lead you through this. Essentially, we save cookies, local storage, and session storage states from Login Tests. Users can load them into relevant tests that require authentication by doing "fetch cookie".
+
+## How can I debug tests?
+
+**Agent Logs**: The agent provides a step-by-step analysis for each action it performs
+
+**Full Browser Observability**
+- **Video Replay**: View the entire test run across all tabs
+- **Console and Network Logs**: Get real-time access to console and network log
+- **Bug Analysis**: Bugs are also directly surfaced to you by Testavi with an explanation :)
+
+## How can I edit tests?
+
+Modify natural language instructions in seconds.
+
+## How do you ensure test reliability?
+
+Testavi does not rely on XPaths or Selectors to run tests. Each test run is an AI run—the agent dynamically looks at the page and browses, just like human users do.
+
+Tests only fail if your User Story or Functionality changes—tests are independent of code changes.
+
+## Can I add any code based actions?
+
+Yes, we support Javascript injection within tests. Call REST endpoints, APIs, or any other custom functionality you want.
+
+## Mobile Testing?
+
+We support mobile web view testing, not Native App Testing at the moment, but it is in our roadmap for next year :)
+
+## Security? Do you require access to my code base?
+
+We require zero access to your codebase & only testing deployed URLs. All our software is hosted in secure cloud environment, and tests are run in a secure cloud environment
+
+## How do you handle On-premise website testing?
+
+We currently don't offer an on-prem solution. All our tests are running in the cloud. However, if you have any environments hosted internally, behind a firewall, or in VPN, you can give us a client cert or whitelist our IP to allow us to access your application.
+
+## How do you run tests?
+
+We run tests on our deployed cloud instance against the test URL you specify. It work on any deployed URLs — including Ephemeral URLs generated in your CI.
