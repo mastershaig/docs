@@ -1,0 +1,55 @@
+---
+title: "Write your first test"
+---
+
+## **\
+Creating Your Test**
+
+<Steps>
+  <Step title="Fill Basic Test Information">
+    Start with the essential details:
+
+    - **Test Name**: Give your test a clear, descriptive title for internal organization
+    - **Test Description**: Add detailed context about the test’s purpose
+    - **Test URL**: The starting URL of your test (complete path, e.g., [**https://your-domain-name.com**](https://your-domain-name.com))
+    - **Viewport Size**: Choose the screen size for test execution (e.g., MacBook Pro 15”)
+  </Step>
+  <Step title="Configure Test Settings">
+    Set up your test configuration:
+
+    - **Authentication Settings**:
+      - Start from logged-in state: Begin test using login state from another test
+      - Save login state: Make this test’s login state available for other tests
+      - [**Learn more about authentication configuration**](https://docs.spurtest.com/tests/authentication)
+
+    <Info>
+      Using a custom authentication setup? If you encounter any issues, the Testavi team is here to help optimize your configuration. Don’t hesitate to reach out for personalized assistance.
+    </Info>
+    - **File Upload Configuration**:
+      - Include files for upload: Add files needed during test execution
+
+    <Info>
+      Authentication configuration is crucial for tests that require user login states. See our [**authentication guide**](https://docs.spurtest.com/tests/authentication) for detailed setup instructions.
+    </Info>
+  </Step>
+  <Step title="File Uploads">
+    For tests requiring file uploads:
+
+    - Specify the files needed for the test
+    - Files must be under **5MB each**
+    - Ensure proper file paths and permissions
+
+    <Info>
+      File upload capability is essential for completing tests that interact with file inputs
+    </Info>
+  </Step>
+</Steps>
+
+## **Best Practices**
+
+1. **Clear Naming**: Use descriptive names for your tests
+2. **Proper Verification**: Include VERIFY statements for critical checkpoints
+
+## **Next Steps**
+
+Ready to run your test? Learn how to [**execute and monitor your tests**](https://docs.spurtest.com/tests/running)!
