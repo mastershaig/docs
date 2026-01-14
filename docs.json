@@ -16,6 +16,7 @@
           {
             "group": "Getting Started",
             "pages": [
+              "welcome",
               "prompting-101",
               "test-step-types",
               "discrete-actions",
