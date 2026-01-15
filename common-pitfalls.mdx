@@ -5,83 +5,89 @@ title: "Common Pitfalls When Writing Tests in Testavi"
 
 <AccordionGroup>
   <Accordion title="1. Incorrect or Misformatted Starting URL">
-    **What happens:** Tests fail immediately or start on the wrong page.
+    **What happens:** 
 
-**Why it matters:** The Start URL is where Testavi begins your test flow—it must be complete and properly formatted.
+    Tests fail immediately or start on the wrong page.
 
-**Correct example:** Always include `https://` and the complete URL.
+    **Why it matters:** 
 
-**Incorrect examples:**
+    The Start URL is where Testavi begins your test flow—it must be complete and properly formatted.
 
-- Missing protocol (`https://`)
-- Incomplete URLs
+    **Correct example:** 
 
-<Tip>
-  Always copy and paste the URL directly from the browser's address bar.
-</Tip>
+    Always include `https://` and the complete URL. 
+
+    ![Screenshot2026 01 15at01 44 57](/images/Screenshot2026-01-15at01.44.57.png)
+
+    **Incorrect examples:**
+
+    - Missing protocol (`https://`) 
+
+      ![Screenshot2026 01 15at01 45 31](/images/Screenshot2026-01-15at01.45.31.png)
+    - Incomplete URLs 
+
+      ![Screenshot2026 01 15at01 45 43](/images/Screenshot2026-01-15at01.45.43.png)
+
+    <Tip>
+      Always copy and paste the URL directly from the browser's address bar.
+    </Tip>
   </Accordion>
   <Accordion title="2. Mixing Actions Inside 'Verify' Steps">
-    
-**What happens:** Tests become semantically unclear or are misinterpreted.
+    **What happens:**
 
-**Bad example:** Combining verification and action in one step.
+    Tests become semantically unclear or are misinterpreted.
 
-**Good example:** Separate verification and action into distinct steps.
+    **Bad example:**
 
-<Info>
-  **Rule of thumb:**
+    ![Screenshot2025 07 05at11 01 54AM](/images/Screenshot2025-07-05at11.01.54AM.png)
 
-  - **Actions** = things the test does (e.g., click, scroll)
-  - **Verifications** = things the test checks (e.g., visible, present)
+    **Good example:**
 
-  Keep them in separate steps.
-</Info>
+    ![Screenshot2025 07 05at10 53 16AM](/images/Screenshot2025-07-05at10.53.16AM.png)
+
+    Separate verification and action into distinct steps.
+
+    **Rule of thumb:**
+
+    - **Actions** = things the test does (e.g., click, scroll)
+    - **Verifications** = things the test checks (e.g., visible, present)
+
+    Keep them in separate steps.
   </Accordion>
-  <Accordion title="3. Non-Scenario Table Tests in Scenario Table Test Suite">
-    **What happens:** Static tests placed inside a scenario table suite will execute once per scenario row, potentially causing duplicate confirmations or side effects.
-
-**Bad example:** Static verifications running in a scenario table suite.
-
-**Good practice:** Keep tests that do not rely on scenario table variables in a separate test or suite. This prevents static verifications from running multiple times.
-  </Accordion>
-  <Accordion title="4. Using 'Go to URL' Inside Test Steps">
+  <Accordion title="3. Using Go to URL Inside Test Steps">
     **What happens:** Testavi can't interpret "Go to URL" commands mid-test, causing scripts to fail.
 
-**Bad example:** Using "Go to URL" as a test step.
+    **Bad example:**
 
-**Good example:**
+    ![Screenshot2025 07 05at11 54 00AM](/images/Screenshot2025-07-05at11.54.00AM.png)
 
-- Set the Start URL in your test's settings
-- Use actions for in-test navigation (e.g., click on navigation links)
+    **Good example:**
 
+    - Set the Start URL in your test's settings
+
+      ![Screenshot2025 07 05at11 54 57AM 1](/images/Screenshot2025-07-05at11.54.57AM-1.png)
+    - Use actions for in-test navigation (e.g., click on navigation links)
+
+      ![Screenshot2025 07 05at11 58 12AM](/images/Screenshot2025-07-05at11.58.12AM.png)
   </Accordion>
+  <Accordion title="4. Scrolling">
+    **What happens:**
 
-  <Accordion title="6. Scrolling">
-    
-**What happens:** The agent only interacts with elements in view unless instructed otherwise. Tests may fail to locate off-screen elements.
+    The agent only interacts with elements in view unless instructed otherwise. Tests may fail to locate off-screen elements.
 
-**What to do:** Explicitly include scroll steps before verifications or actions.
+    **What to do:**
 
-The agent will also scroll to find out-of-viewport items, but specifying scrolls improves test stability. See [Discrete Actions: Scroll](/discrete-actions#scroll).
+    Explicitly include scroll steps before verifications or actions.
 
-<Info>
-  Remember that the agent sees only what a human sees. Include scroll instructions to ensure consistent element visibility.
-</Info>
-    </Accordion>
-    <Accordion title="7. Accessing Restricted Domains via Preview Editor">
-      **What happens:** Direct navigation to restricted domains (e.g., Testavimail.com) may be blocked due to IP restrictions.
+    ![Screenshot2025 07 05at12 09 50PM](/images/Screenshot2025-07-05at12.09.50PM.png)
 
-**What to do:** Access these domains through the Preview Editor, which proxies requests and bypasses IP blocks. When you run the test normally, the agent routes via Preview Editor and executes steps successfully.
+    The agent will also scroll to find out-of-viewport items, but specifying scrolls improves test stability. See Discrete Actions: Scroll.
 
-<Tip>
-  Use the Preview Editor view to interact with Testavimail.com. Direct browser access may show a blocked IP error, but tests will pass when executed through Testavi Preview.
-</Tip>
-    </Accordion>
-  
+    <Info>
+      Remember that the agent sees only what a human sees. Include scroll instructions to ensure consistent element visibility.
+    </Info>
+  </Accordion>
 </AccordionGroup>
-
-
-
 
 ## ✅ Authoring Do's & Don'ts
 
