@@ -40,40 +40,40 @@ Always begin with 'Verify' to check for:
 
 Each test step is one of the 4 types: **ACTION**, **VERIFICATION**, **JAVASCRIPT**, **EXTRACT**
 
-### Action
+<Columns cols={2}>
+  <Card title="Action" icon="sparkles">
+    Click, Type, Hover, Scroll, Wait, Upload, or Select operations for user interactions
+  </Card>
+  <Card title="Verify" icon="sparkles">
+    Check elements, states, and conditions on the page
+  </Card>
+  <Card title="JavaScript" icon="sparkles">
+    Run custom JavaScript code for complex operations
+  </Card>
+  <Card title="Extract" icon="sparkles">
+    Pull and store data from the page for later use
+  </Card>
+</Columns>
 
-Click, Type, Hover, Scroll, Wait, Upload, or Select operations for user interactions
-
-### Verify
-
-Check elements, states, and conditions on the page
-
-### JavaScript
-
-Run custom JavaScript code for complex operations
-
-### Extract
-
-Pull and store data from the page for later use
+### 
 
 ## Best Practices
 
-- **Start Simple**: Begin with discrete actions for common interactions
-- **Validate Early**: Use verification actions to catch issues quickly
-- **Extract Strategically**: Only extract data you need for subsequent steps
-- **JavaScript as Backup**: Use JavaScript actions when other options aren't sufficient
+1. **Start Simple**: Begin with discrete actions for common interactions
+2. **Validate Early**: Use verification actions to catch issues quickly
+3. **Extract Strategically**: Only extract data you need for subsequent steps
+4. **JavaScript as Backup**: Use JavaScript actions when other options aren't sufficient
 
 ## Common Pitfalls
 
-- **Multiple Actions**: Combining multiple actions in one step
-- **Vague Descriptions**: Using unclear element descriptions
-- **Missing Brackets**: Forgetting to enclose values or elements
-- **Skipping Verifications**: Not validating important states
-- **Implicit Waits**: Not specifying wait durations
+1. **Multiple Actions**: Combining multiple actions in one step
+2. **Vague Descriptions**: Using unclear element descriptions
+3. **Missing Brackets**: Forgetting to enclose values or elements
+4. **Skipping Verifications**: Not validating important states
+5. **Implicit Waits**: Not specifying wait durations
 
 ## Next Steps
 
-- Check out our prompt library
-- Try writing your first test
-- Explore available actions
+- Try writing your [first test](/first-test)
+- Explore [available actions](/discrete-actions)
 - Learn about test configuration
