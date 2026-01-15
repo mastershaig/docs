@@ -9,6 +9,14 @@
   },
   "favicon": "/images/favicon.png",
   "navigation": {
+    "global": {
+      "tabs": [
+        {
+          "tab": "Community",
+          "href": "https://www.linkedin.com/company/testavi/"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Documentation",
