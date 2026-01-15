@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "almond",
   "name": "Testavi Documentation",
   "colors": {
     "primary": "#16A34A",
@@ -17,6 +17,7 @@
             "group": "Getting Started",
             "pages": [
               "welcome",
+              "first-test",
               "prompting-101",
               "common-pitfalls",
               "faq"
@@ -41,5 +42,8 @@
   },
   "modeToggle": {
     "default": "light"
+  },
+  "appearance": {
+    "strict": false
   }
 }
