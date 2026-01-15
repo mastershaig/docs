@@ -5,26 +5,26 @@ title: "Common Pitfalls When Writing Tests in Testavi"
 
 <AccordionGroup>
   <Accordion title="1. Incorrect or Misformatted Starting URL">
-    **What happens:** 
+    **What happens:**
 
     Tests fail immediately or start on the wrong page.
 
-    **Why it matters:** 
+    **Why it matters:**
 
     The Start URL is where Testavi begins your test flow—it must be complete and properly formatted.
 
-    **Correct example:** 
+    **Correct example:**
 
-    Always include `https://` and the complete URL. 
+    Always include `https://` and the complete URL.
 
     ![Screenshot2026 01 15at01 44 57](/images/Screenshot2026-01-15at01.44.57.png)
 
     **Incorrect examples:**
 
-    - Missing protocol (`https://`) 
+    - Missing protocol (`https://`)
 
       ![Screenshot2026 01 15at01 45 31](/images/Screenshot2026-01-15at01.45.31.png)
-    - Incomplete URLs 
+    - Incomplete URLs
 
       ![Screenshot2026 01 15at01 45 43](/images/Screenshot2026-01-15at01.45.43.png)
 
@@ -91,12 +91,9 @@ title: "Common Pitfalls When Writing Tests in Testavi"
 
 ## ✅ Authoring Do's & Don'ts
 
-| ❌ Don't                                                                 | ✅ Do                                                         |
-| ----------------------------------------------------------------------- | ------------------------------------------------------------ |
-| Use incomplete or incorrect URLs                                        | Use full URLs including `https://`, copy directly            |
-| Mix actions and verifications                                           | Keep actions and checks in separate steps                    |
-| Use "Go to URL" mid-test                                                | Set the start URL in test settings                           |
-| Combine static steps inside scenario loops                              | Keep tables fully dynamic; extract shared setup              |
-| Attempt tab or browser navigations without browser actions              | Use browser action steps for tab/window navigation           |
-| Omit scroll instructions                                                | Explicitly include scroll steps before actions/verifications |
-| Rely on direct navigation to restricted domains (e.g., Testavimail.com) | Access via Preview Editor to bypass IP restrictions          |
+| ❌ Don't                          | ✅ Do                                                         |
+| -------------------------------- | ------------------------------------------------------------ |
+| Use incomplete or incorrect URLs | Use full URLs including `https://`, copy directly            |
+| Mix actions and verifications    | Keep actions and checks in separate steps                    |
+| Use "Go to URL" mid-test         | Set the start URL in test settings                           |
+| Omit scroll instructions         | Explicitly include scroll steps before actions/verifications |
