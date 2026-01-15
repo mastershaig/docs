@@ -18,7 +18,6 @@
             "pages": [
               "welcome",
               "prompting-101",
-              "dynamic-data-processing",
               "common-pitfalls",
               "faq"
             ]
@@ -28,7 +27,8 @@
             "pages": [
               "test-step-types",
               "discrete-actions",
-              "javascript-actions"
+              "javascript-actions",
+              "dynamic-data-processing"
             ]
           }
         ]
