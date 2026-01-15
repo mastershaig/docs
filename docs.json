@@ -18,12 +18,17 @@
             "pages": [
               "welcome",
               "prompting-101",
-              "test-step-types",
-              "discrete-actions",
               "dynamic-data-processing",
-              "javascript-actions",
               "common-pitfalls",
               "faq"
+            ]
+          },
+          {
+            "group": "Test Step Types",
+            "pages": [
+              "test-step-types",
+              "discrete-actions",
+              "javascript-actions"
             ]
           }
         ]
