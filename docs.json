@@ -12,6 +12,14 @@
     "tabs": [
       {
         "tab": "Getting Started",
+        "global": {
+          "tabs": [
+            {
+              "tab": "test2",
+              "href": ""
+            }
+          ]
+        },
         "groups": [
           {
             "group": "Getting Started",
