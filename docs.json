@@ -12,6 +12,14 @@
     "tabs": [
       {
         "tab": "Documentation",
+        "global": {
+          "languages": [
+            {
+              "language": "tr",
+              "href": ""
+            }
+          ]
+        },
         "groups": [
           {
             "group": "Getting Started",
@@ -28,8 +36,7 @@
             "pages": [
               "test-step-types",
               "discrete-actions",
-              "javascript-actions",
-              "dynamic-data-processing"
+              "javascript-actions"
             ]
           }
         ]
