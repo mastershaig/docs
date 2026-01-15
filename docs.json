@@ -9,10 +9,9 @@
   },
   "favicon": "/images/favicon.png",
   "navigation": {
-    "tabs": [
+    "dropdowns": [
       {
-        "tab": "Getting Started",
-        
+        "dropdown": "Getting Started",
         "groups": [
           {
             "group": "Getting Started",
