@@ -12,14 +12,6 @@
     "tabs": [
       {
         "tab": "Documentation",
-        "global": {
-          "languages": [
-            {
-              "language": "tr",
-              "href": ""
-            }
-          ]
-        },
         "groups": [
           {
             "group": "Getting Started",
