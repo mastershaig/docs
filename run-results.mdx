@@ -1,0 +1,68 @@
+---
+title: "Reading Run Results"
+description: "The run page: verdict, 'What went wrong' analysis, timeline, video, screenshots, console and network"
+---
+
+Every run opens on the run page, built so a store owner can see what broke at a
+glance and an engineer can dig into exactly why.
+
+## Verdict
+
+The header shows the **verdict** (pass or fail), the test name, the site, the
+duration, when it ran, and what triggered it.
+
+## "What went wrong"
+
+For a failed run, a plain-English analysis card explains the failure: a summary, the
+impact on a shopper, and a **classification** of the cause:
+
+<CardGroup cols={3}>
+  <Card title="Product bug" icon="bug">
+    A genuine defect in the store — the thing a store owner needs to fix.
+  </Card>
+  <Card title="Test issue" icon="pen">
+    A problem with the test itself or its steps, not the store.
+  </Card>
+  <Card title="Environment issue" icon="cloud">
+    An infrastructure problem — a block, a timeout, a bot check — not an app bug.
+  </Card>
+</CardGroup>
+
+The card also shows what was **expected** versus what actually happened, the likely
+cause, and a confidence level.
+
+## The step timeline
+
+Below the verdict is a per-step timeline: each step's status, duration, and a
+thumbnail. The failed step is expanded by default, showing expected vs. actual and
+the agent's reasoning.
+
+## Video synced to steps
+
+The run video plays back the whole run. Clicking a step **seeks** the video to that
+moment, the active step highlights during playback, and the scrubber shows a marker
+per step.
+
+## Before/after screenshots
+
+A failed step shows **before** and **after** screenshots — the page state going into
+the step and coming out of it — so you can see exactly what changed.
+
+## Console & network panels
+
+Alongside the video, the **Console** and **Network** panels capture browser logs for
+the run, with filters (console: all / errors / warnings; network: all / failed /
+5xx) and badges showing the error and failed-request counts.
+
+## Share links
+
+Use **Share** to create a public, no-login link to a run — handy for a Slack message,
+a Jira ticket, or a PR. **Copy link** copies it. The public page keeps the analysis,
+timeline, and screenshots, but secrets and auth headers are stripped.
+
+## Environment issues are not bugs
+
+A page that returns **403, 429, a Cloudflare bot-check, or a captcha** is classified
+as an **environment issue**, not a product bug. This keeps infrastructure noise out
+of your bug list. See the classification above and [Fast re-runs](/fast-re-runs) for
+how replays behave.

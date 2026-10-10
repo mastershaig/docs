@@ -1,0 +1,52 @@
+---
+title: "Fast Re-runs"
+description: "How replay makes repeat runs faster and self-healing, and how to get the most from it"
+---
+
+The first time a test runs, Testavi works out each step live. On later runs it
+**replays** the steps that already passed, which makes repeat runs much faster and
+cheaper.
+
+## How replay works
+
+<Steps>
+  <Step title="Passed steps are recorded">
+    When a step passes, Testavi records the resolved action together with a robust
+    way to find the element again.
+  </Step>
+  <Step title="They are replayed deterministically">
+    On the next run, a replayed step executes directly, skipping the planning the
+    first run needed. A replayed step shows a **Replayed** badge in the timeline.
+  </Step>
+  <Step title="Steps self-heal on a miss">
+    If the page has changed and a replayed step no longer matches, Testavi falls back
+    to working it out live again and re-records it — so a replay heals itself instead
+    of failing.
+  </Step>
+</Steps>
+
+Changing a step's text invalidates its recording automatically, so edits always take
+effect.
+
+## Verify steps are always fresh
+
+Replayed **action** steps are executed deterministically, but **Verify** steps are
+always re-evaluated on every run. That means a replay still proves the important
+things are true.
+
+<Warning>
+  A test made only of clicks, with no **Verify** step, re-checks nothing on a replay.
+  **End every test with a Verify step** so a fast re-run still asserts something
+  meaningful.
+</Warning>
+
+## Environment issues, not false failures
+
+If a replay hits a blocking page — a **403, 429, Cloudflare bot-check, or captcha** —
+Testavi reports it as an [environment issue](/run-results), not a product bug. A
+transient block does not get logged as a regression in your store.
+
+<Tip>
+  Re-running only the failed tests or [scenario rows](/scenario-tables) is the fastest
+  way to confirm a fix, because the passing steps around them replay.
+</Tip>
