@@ -3,18 +3,37 @@ title: 'Test Step Types'
 description: 'Overview of the test steps available in Testavi'
 ---
 
+Testavi reads the first word of each step to decide its kind. The editor shows a
+coloured badge for each so you can see at a glance what a step does.
+
 ## Discrete Actions
 
-Basic browser interactions like click, type, hover, and scroll. These form the building blocks of your tests.
+Basic browser interactions like click, type, hover, scroll, wait, and select. These
+form the building blocks of your tests. See [Discrete Actions](/discrete-actions).
 
-## Verification
+## Verify (hard check)
 
-Validate page content and state to ensure your application behaves correctly. Includes element presence checks and content validation.
+Validate page content and state. A failed **Verify** step fails the whole run — use
+it for the things that must be true.
 
-## Extractions
+## Check (soft check)
 
-Extract and store data from your pages for use in subsequent test steps. Enables dynamic data flows in your tests.
+Like Verify, but a failure is recorded as a warning and does **not** fail the run.
+Use it for nice-to-haves. See [Verify vs Check](/verify-vs-check).
+
+## Conditional (If / skip)
+
+Handle optional elements such as cookie banners and popups — "If a banner appears,
+close it, otherwise skip". An absent element is a clean skip, never a failure. See
+[Conditional Steps](/conditional-steps).
+
+## Remember (capture a value)
+
+Capture a value from the page — `Remember the price as {price}` — and reuse it in a
+later step. Combined with `{{environment}}` and `{{column}}` variables, this enables
+dynamic data flows. See [Variables](/variables).
 
 ## JavaScript
 
-Execute custom JavaScript code for advanced interactions and complex scenarios that require programmatic control.
+Execute custom JavaScript code for advanced interactions and complex scenarios that
+require programmatic control. See [JavaScript Actions](/javascript-actions).

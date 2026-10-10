@@ -1,0 +1,99 @@
+---
+title: "Variables"
+description: "Environment and table variables with {{name}} versus runtime 'Remember' values with {name}"
+---
+
+Testavi has two variable syntaxes, and the number of braces tells them apart.
+
+<CardGroup cols={2}>
+  <Card title="{{name}} — before the run" icon="gear">
+    **Environment** variables, secrets, and scenario-table **columns**. Their
+    values are filled into your step text *before* the run starts.
+  </Card>
+  <Card title="{name} — during the run" icon="bookmark">
+    **Runtime** values you capture mid-test with `Remember … as {name}` and reuse
+    later in the same run.
+  </Card>
+</CardGroup>
+
+## `{{name}}` — environment and table variables
+
+Double-brace variables are substituted up front from values you configure outside
+the step text:
+
+- **Environment variables and secrets** defined on a suite environment (for example
+  `{{coupon_code}}` or `{{login_password}}`). See
+  [Environments & secrets](/environments-and-secrets).
+- **Scenario-table columns** — a column named `email` is referenced as `{{email}}`
+  and takes a different value on each row. See [Scenario Tables](/scenario-tables).
+
+```text
+Type {{coupon_code}} into the discount field and apply it
+Verify the add-to-cart button reads '{{cart_label}}'
+```
+
+If a name has no value, the `{{name}}` text is left in place (so a missing variable
+is visible rather than silently blank).
+
+## `{name}` — runtime "Remember" values
+
+Single-brace variables are captured from the page during the run and reused later.
+Start a step with **Remember** (or Store / Save / Capture) and end with `as {name}`:
+
+```text
+Remember the product price as {price}
+...
+Verify the cart line price equals {price}
+```
+
+The value is read from the page when the Remember step runs, stored, and
+substituted into any later step that uses `{price}`.
+
+<Tip>
+  The editor shows a **Remember** badge on capture steps and autocompletes variable
+  names you have already defined.
+</Tip>
+
+## Example: compare a listing price to the cart price
+
+This is the single most useful pattern in e-commerce testing — catch a price that
+changes between the listing, the product page, and the cart:
+
+<Steps>
+  <Step title="Capture the price on the listing">
+    ```text
+    Open a product collection page
+    Remember the price of the first product as {listing_price}
+    ```
+  </Step>
+  <Step title="Confirm it on the product page">
+    ```text
+    Open that product's page
+    Verify the product page price equals {listing_price}
+    ```
+  </Step>
+  <Step title="Confirm it again in the cart">
+    ```text
+    Select any required variant and click Add to cart
+    Open the cart
+    Verify the cart line price equals {listing_price}
+    ```
+  </Step>
+</Steps>
+
+Because the compared values are money, Testavi evaluates the final checks
+deterministically — no AI call, exact to the penny.
+
+<Note>
+  You can also reach captured values from a JavaScript step, where they are
+  available under `env`. See [JavaScript Actions](/javascript-actions).
+</Note>
+
+## Which one do I use?
+
+| I want to… | Syntax | Where the value comes from |
+| --- | --- | --- |
+| Use a coupon code that differs per environment | `{{coupon_code}}` | Environment variable |
+| Run the same test across many data rows | `{{column}}` | Scenario-table column |
+| Keep a secret out of the step text | `{{login_password}}` | Environment secret |
+| Reuse a value read from the page mid-test | `{price}` | `Remember … as {price}` |

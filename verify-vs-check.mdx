@@ -1,0 +1,68 @@
+---
+title: "Verify vs Check"
+description: "Hard checks that fail a test versus soft checks that only warn"
+---
+
+Testavi has two kinds of assertion step. The word you start the step with decides
+whether a failure stops the test or is only recorded as a warning.
+
+<CardGroup cols={2}>
+  <Card title="Verify — hard check" icon="circle-check">
+    A failed **Verify** step fails the whole test run. Use it for the things that
+    must be true.
+  </Card>
+  <Card title="Check — soft check" icon="triangle-exclamation">
+    A failed **Check** step is recorded as a warning but does **not** fail the
+    run. Use it for nice-to-haves and secondary details.
+  </Card>
+</CardGroup>
+
+## When to use each
+
+Start a step with **Verify** when a failure means the feature is broken:
+
+- `Verify the cart shows 2 items`
+- `Verify the order total equals $9,390.00`
+- `Verify the payment step is shown`
+
+Start a step with **Check** for conditions that are worth noting but should not
+sink an otherwise-passing run:
+
+- `Check that a free-shipping banner is visible`
+- `Check that the product has at least one review`
+- `Check that the order total is lower than {total_before} when the code is valid`
+
+<Tip>
+  In the test editor each step shows a coloured badge for its kind — **Verify**
+  (green, hard) and **Check** (amber, soft) — so you can see at a glance which
+  steps can fail the run.
+</Tip>
+
+## How Testavi decides
+
+Many Verify and Check steps are evaluated **deterministically in the browser with
+no AI call** — URL contents, visible text, counts, and money/number comparisons.
+When a step is ambiguous or visual (for example "the layout looks right"),
+Testavi falls back to an AI judge. Either way, the Verify/Check distinction is the
+same: Verify can fail the run, Check cannot.
+
+<Warning>
+  Keep one assertion per step and keep actions out of assertion steps. A step
+  like "Verify the price and add it to the cart" mixes a check with an action —
+  split it into a `Verify` step and a separate action step. See
+  [Common Pitfalls](/common-pitfalls).
+</Warning>
+
+## Why soft checks exist
+
+A soft check lets you assert on details that are legitimately variable — a promo
+banner that only shows some of the time, an optional review count — without making
+your test flaky. The result still appears in the run report, so you can see when a
+soft check failed, but the run verdict stays green as long as every **Verify**
+passed.
+
+<Tip>
+  End every test with a **Verify** step. On a fast re-run, passed steps are
+  replayed and only Verify steps are re-evaluated fresh — a closing Verify makes
+  sure a replay still proves something. See [Fast re-runs](/fast-re-runs).
+</Tip>

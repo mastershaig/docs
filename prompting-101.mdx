@@ -38,31 +38,37 @@ Always begin with 'Verify' to check for:
 
 ## Writing Steps
 
-Each test step is one of the 4 types: **ACTION**, **VERIFICATION**, **JAVASCRIPT**, **EXTRACT**
+Testavi reads the first word of each step to decide what kind of step it is, and the
+editor shows a coloured badge for each kind:
 
 <Columns cols={2}>
-  <Card title="Action" icon="sparkles">
-    Click, Type, Hover, Scroll, Wait, Upload, or Select operations for user interactions
+  <Card title="Action" icon="hand-pointer">
+    Click, Type, Hover, Scroll, Wait, Upload, or Select — the things the test *does*.
   </Card>
-  <Card title="Verify" icon="sparkles">
-    Check elements, states, and conditions on the page
+  <Card title="Verify" icon="circle-check">
+    A **hard** check — the test fails if it is not true. See [Verify vs Check](/verify-vs-check).
   </Card>
-  <Card title="JavaScript" icon="sparkles">
-    Run custom JavaScript code for complex operations
+  <Card title="Check" icon="triangle-exclamation">
+    A **soft** check — recorded as a warning but does not fail the run.
   </Card>
-  <Card title="Extract" icon="sparkles">
-    Pull and store data from the page for later use
+  <Card title="If / skip" icon="code-branch">
+    A [conditional step](/conditional-steps) for optional elements — "If … otherwise skip".
+  </Card>
+  <Card title="Remember" icon="bookmark">
+    Capture a value from the page to reuse in a later step. See [Variables](/variables).
+  </Card>
+  <Card title="JavaScript" icon="code">
+    Run custom JavaScript code (start the step with `//`). See [JavaScript Actions](/javascript-actions).
   </Card>
 </Columns>
-
-### 
 
 ## Best Practices
 
 1. **Start Simple**: Begin with discrete actions for common interactions
-2. **Validate Early**: Use verification actions to catch issues quickly
-3. **Extract Strategically**: Only extract data you need for subsequent steps
-4. **JavaScript as Backup**: Use JavaScript actions when other options aren't sufficient
+2. **Validate Early**: Use [Verify](/verify-vs-check) steps to catch issues quickly
+3. **One thing per step**: Keep actions and checks in separate steps
+4. **Capture, don't repeat**: Use [Remember](/variables) to reuse a value instead of hard-coding it
+5. **JavaScript as Backup**: Use JavaScript actions when other options aren't sufficient
 
 ## Common Pitfalls
 
@@ -76,4 +82,5 @@ Each test step is one of the 4 types: **ACTION**, **VERIFICATION**, **JAVASCRIPT
 
 - Try writing your [first test](/first-test)
 - Explore [available actions](/discrete-actions)
-- Learn about test configuration
+- Learn [Verify vs Check](/verify-vs-check) and [Variables](/variables)
+- Read the [e-commerce testing guide](/ecommerce-testing-guide)

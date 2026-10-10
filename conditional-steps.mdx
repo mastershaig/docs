@@ -1,0 +1,50 @@
+---
+title: "Conditional Steps"
+description: "Handle optional elements with 'If … otherwise skip' steps"
+---
+
+Real storefronts show things that are not always there: cookie banners, newsletter
+popups, a one-time consent dialog. A conditional step lets a test handle these
+without failing when they are absent.
+
+## Syntax
+
+Start the step with **If**, describe the condition, then the action to take:
+
+```text
+If a cookie banner is displayed, close it, otherwise skip
+```
+
+Testavi checks the condition cheaply. If the described element **is not present**,
+the step is a clean **SKIP** — it never fails the run. If the element is present,
+the action runs.
+
+<Tip>
+  The step editor tags these steps with an **If / skip** badge so you can spot
+  conditional logic at a glance.
+</Tip>
+
+## Examples
+
+```text
+If a newsletter popup appears, dismiss it, otherwise skip
+If a "Select your country" dialog is shown, choose United States, otherwise skip
+If an age-verification prompt appears, confirm you are over 18, otherwise skip
+```
+
+An `If …` step without an explicit "otherwise skip" is still treated as optional —
+an absent element is a skip, not a failure.
+
+## Overlays are already handled for you
+
+You usually do **not** need a conditional step for common cookie or consent banners
+and newsletter modals. Testavi automatically dismisses the most common ones before
+each action, and before every **Verify** step, so they do not steal the agent's
+target or turn into false findings. Reach for a conditional step when an overlay or
+optional element is specific to your store and not caught automatically.
+
+<Warning>
+  Conditional steps are for **optional** elements. Do not use them to hide a real
+  requirement — if an element must appear, assert it with a plain `Verify` step so
+  a missing element fails the test.
+</Warning>
