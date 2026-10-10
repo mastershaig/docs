@@ -1,0 +1,91 @@
+---
+title: "Test Templates"
+description: "Start from a curated e-commerce template or generate a starter suite from your store URL"
+---
+
+Templates are ready-made, editable tests with carefully worded steps, so you can
+start from a working test instead of a blank page. Open **Templates** from the
+sidebar to browse the gallery.
+
+## The e-commerce gallery
+
+Each template is a complete test you can preview, add to a suite, and edit. The
+curated templates are:
+
+<CardGroup cols={2}>
+  <Card title="Homepage loads and key navigation works">
+    Confirms the storefront loads and the primary navigation links go where they
+    should.
+  </Card>
+  <Card title="Search returns relevant products">
+    Checks that searching for a common product term returns relevant results.
+  </Card>
+  <Card title="Collection filter and sort">
+    Opens a collection, applies a filter and a sort order, and verifies the listing
+    updates.
+  </Card>
+  <Card title="Product page: variant selection and add to cart">
+    Selects a required product variant and adds the item to the cart.
+  </Card>
+  <Card title="Cart quantity change and remove">
+    Changes the quantity of a cart line and then removes it, verifying totals update.
+  </Card>
+  <Card title="Price consistency across listing, product page and cart">
+    Captures a product's price on the listing and verifies it stays the same on the
+    product page and in the cart.
+  </Card>
+  <Card title="Coupon / discount code">
+    Applies a discount code in the cart and verifies the total reflects the discount.
+  </Card>
+  <Card title="Checkout up to the payment step (never pay)">
+    Walks checkout through contact and shipping up to the payment step, and stops
+    before paying.
+  </Card>
+  <Card title="Mobile menu and add to cart">
+    On a phone-sized viewport, opens the mobile menu and completes an add-to-cart.
+  </Card>
+  <Card title="Broken links / 404 sweep of key pages">
+    Visits key pages and checks for obvious errors or broken links.
+  </Card>
+  <Card title="Newsletter / contact form validation (no submit)">
+    Checks that the newsletter or contact form validates input, without submitting
+    it.
+  </Card>
+  <Card title="Store in each language">
+    Runs the same journey once per language via a scenario table, checking the page
+    language, currency, and untranslated text.
+  </Card>
+</CardGroup>
+
+<Note>
+  The **Store in each language** template comes with a built-in scenario table
+  (English, German, French). See
+  [Language & locale testing](/language-locale-testing) and
+  [Scenario Tables](/scenario-tables).
+</Note>
+
+## Starter suite from a store URL
+
+Rather than add templates one at a time, use **Generate a starter suite for my
+store**: enter your store URL, pick the templates you want, and Testavi creates a
+suite with those tests pointed at your store.
+
+<Steps>
+  <Step title="Enter your store URL">
+    For example `https://mystore.com`.
+  </Step>
+  <Step title="Pick templates">
+    Choose the templates to include and name the suite.
+  </Step>
+  <Step title="Edit and run">
+    The generated tests use your store URL as their start URL. Open each one and
+    tweak the wording for your store's exact labels before running — see
+    [Prompting 101](/prompting-101) and
+    [the e-commerce testing guide](/ecommerce-testing-guide).
+  </Step>
+</Steps>
+
+<Tip>
+  Templates are starting points. Quote your store's exact button and label text in
+  the steps to make the tests more reliable.
+</Tip>
