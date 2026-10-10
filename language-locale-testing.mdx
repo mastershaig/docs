@@ -1,0 +1,104 @@
+---
+title: "Language & Locale Testing"
+description: "Test your store in different languages, currencies, timezones and regions"
+---
+
+Testavi can run a test as if the shopper were in another country: a different
+browser language, timezone, and location. It can then verify the page is actually
+translated, prices use the right currency, and dates are formatted for the locale.
+
+## Locale settings
+
+Locale can be set per test, per [environment](/environments-and-secrets), or per
+[scenario-table](/scenario-tables) row (the row wins). The settings drive the
+browser context the test runs in:
+
+| Setting | What it does |
+| --- | --- |
+| **Locale** | Sets `Accept-Language` and `navigator.language`, e.g. `de-DE`. |
+| **Timezone** | An IANA timezone, e.g. `Europe/Berlin`. Empty means the browser default. |
+| **Geolocation** | Latitude/longitude reported to the page. Empty means none. |
+| **Currency** | The expected currency code, e.g. `EUR` — a hint used by assertions. |
+
+Geolocation is configured on the test or environment. Locale and timezone can also
+be set per row in a scenario table (see reserved columns below).
+
+## Reserved scenario columns
+
+When you run a journey across many locales with a scenario table, these column names
+are **reserved** — Testavi applies them to the browser context instead of treating
+them as plain `{{variables}}`:
+
+| Column | Effect |
+| --- | --- |
+| `locale` | Sets the browser locale (e.g. `fr-FR`). |
+| `timezone` | Sets the IANA timezone (e.g. `Europe/Paris`). |
+| `country` | Fills in sensible locale / timezone / currency defaults for common markets (e.g. `DE`, `FR`, `GB`). An explicit `locale` or `timezone` column still wins. |
+
+Any other column is an ordinary `{{column}}` variable you can reference in your
+steps.
+
+## Locale checks
+
+These Verify/Check steps are evaluated deterministically — no AI call:
+
+<AccordionGroup>
+  <Accordion title="Page language" icon="language">
+    ```text
+    Verify the page is in German
+    Verify the cart page is in French
+    ```
+    Testavi samples the visible text and detects the language. If it is not
+    confident, it falls back to the AI judge rather than guessing.
+  </Accordion>
+  <Accordion title="Currency" icon="coins">
+    ```text
+    Verify prices are shown in EUR
+    ```
+    Passes when the expected currency appears and no conflicting currency symbol is
+    on the page.
+  </Accordion>
+  <Accordion title="Date format" icon="calendar">
+    ```text
+    Verify the date format is DD.MM.YYYY
+    ```
+    Passes when a date in that format is present. If a date in a *different* format
+    is shown, the check fails conclusively.
+  </Accordion>
+  <Accordion title="Untranslated text" icon="triangle-exclamation">
+    ```text
+    Check no untranslated English text is visible
+    ```
+    Flags leftover English UI strings (such as "Add to cart", "Checkout",
+    "Subtotal") on a page that should be in another language. This is a **Check**
+    (soft) by default, so it warns without failing the run.
+  </Accordion>
+</AccordionGroup>
+
+## Example: one journey, three languages
+
+Pair locale settings with a scenario table so a single test runs once per language.
+A table with a reserved `locale` column plus `expected_language`, `currency`, and
+`cart_label` columns drives steps like:
+
+```text
+Verify the homepage loads without errors
+Verify the page is in {{expected_language}}
+Verify prices are shown in {{currency}}
+Verify the add-to-cart button reads '{{cart_label}}'
+Click '{{cart_label}}'
+Open the cart
+Verify the cart page is in {{expected_language}}
+Check no untranslated English text is visible
+```
+
+| locale | expected_language | currency | cart_label |
+| --- | --- | --- | --- |
+| en-US | English | USD | Add to cart |
+| de-DE | German | EUR | In den Warenkorb |
+| fr-FR | French | EUR | Ajouter au panier |
+
+<Tip>
+  This is exactly the built-in **"Store in each language"** template — see
+  [Test Templates](/test-templates) for a ready-made starting point.
+</Tip>
