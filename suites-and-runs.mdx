@@ -1,0 +1,50 @@
+---
+title: "Suites & Suite Runs"
+description: "Group tests into a suite, run them together, and read the suite report"
+---
+
+A **test suite** groups related tests. Running a suite executes all of its tests as
+one **suite run** and rolls the results up into a single report.
+
+## Run a suite
+
+From a suite's detail page, click **Run suite**. Testavi executes the tests as one
+suite run. Tests that save or reuse login state are ordered so that **login tests
+run first**, and a test that `depends_on` another runs after it — so the login state
+exists before the tests that need it.
+
+You can pick which [environment](/environments-and-secrets) to run the suite with.
+
+## The suite report
+
+The suite run report shows:
+
+- The overall **verdict** and **pass rate**.
+- **Per-test results** — each test's status, with a link to its full run.
+- A **Re-run failed** button.
+
+While a suite run is in progress, the report keeps updating until every test is
+done.
+
+## Re-run failed
+
+After a suite run, **Re-run failed** runs only the tests (and, for a
+[scenario table](/scenario-tables), only the rows) that failed — a fast way to
+confirm a fix without re-running everything. The re-run inherits the environment of
+the original suite run.
+
+## Cancel a run
+
+You can **cancel** a run that is in progress. The run is marked stopped and its
+background task is revoked. Steps that had not run yet are shown as skipped.
+
+<Tip>
+  You can also trigger and read suite runs programmatically through the
+  [MCP server](/mcp-server) or the REST API.
+</Tip>
+
+## How re-runs stay fast
+
+On a re-run, steps that passed before are replayed deterministically and self-heal
+if the page has changed; only **Verify** steps are re-evaluated fresh. This makes
+repeat runs much faster and cheaper. See [Fast re-runs](/fast-re-runs).

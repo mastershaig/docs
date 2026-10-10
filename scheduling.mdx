@@ -1,0 +1,43 @@
+---
+title: "Scheduling"
+description: "Run suites automatically on an interval, at a time of day, or on a cron expression"
+---
+
+Schedules run a suite automatically so you catch regressions without clicking **Run
+suite** yourself. Create one from the **Scheduler** in the sidebar.
+
+## Schedule types
+
+<CardGroup cols={3}>
+  <Card title="Interval" icon="arrows-rotate">
+    Run every N minutes, hours, or days.
+  </Card>
+  <Card title="Time of day" icon="clock">
+    Run at a specific `HH:MM` on chosen weekdays, in an IANA timezone.
+  </Card>
+  <Card title="Cron" icon="code">
+    A standard cron expression, e.g. `0 9 * * 1-5` (weekdays at 09:00).
+  </Card>
+</CardGroup>
+
+For a time-of-day or cron schedule, pick the IANA **timezone** (for example
+`America/New_York` or `Europe/Berlin`) so the schedule fires at the local time you
+expect.
+
+## The next run
+
+Each schedule shows its computed **next run** time. A schedule can also run with a
+chosen [environment](/environments-and-secrets), and single-test schedules expand
+[scenario-table](/scenario-tables) rows just like a manual run.
+
+## Outcomes
+
+A scheduled run reports a real outcome: it is marked **FAILED** (with a message) when
+a test fails or your monthly run quota is exhausted, rather than always reporting
+success. Each scheduled run produces a suite run you can open like any other — see
+[Suites & suite runs](/suites-and-runs).
+
+<Tip>
+  Combine a schedule with [notifications](/notifications) to get a Slack, email, or
+  webhook summary each time the suite runs.
+</Tip>

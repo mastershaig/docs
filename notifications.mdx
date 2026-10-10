@@ -1,0 +1,44 @@
+---
+title: "Notifications"
+description: "Get one summary per suite run via Slack, email, or a webhook"
+---
+
+Testavi can tell you when a suite run finishes. You get **one summary per suite
+run** — not one message per test — so a suite of 20 tests produces a single
+notification. Configure these under **Integrations** in the sidebar.
+
+## Channels
+
+<CardGroup cols={3}>
+  <Card title="Slack" icon="slack">
+    Post the suite-run summary to a connected Slack workspace.
+  </Card>
+  <Card title="Email" icon="envelope">
+    Email the suite-run summary.
+  </Card>
+  <Card title="Webhook" icon="webhook">
+    POST a JSON summary to a URL of your choice — for example to drive your own
+    automation.
+  </Card>
+</CardGroup>
+
+## Notification preferences
+
+Choose when to be notified — for example **when a test fails**, or also **when a test
+passes**.
+
+## Webhooks
+
+Add a **Webhook URL** (for example `https://hooks.example.com/testavi`) to receive a
+JSON payload for each suite run. Requests are sent with a timeout.
+
+<Warning>
+  For safety, webhook URLs that point at loopback, private, or cloud-metadata
+  addresses are refused by default.
+</Warning>
+
+<Note>
+  Notifications are the only channels Testavi sends to today: Slack, email, and
+  webhook, as a single summary per suite run. Pair them with
+  [scheduling](/scheduling) for hands-off monitoring.
+</Note>
