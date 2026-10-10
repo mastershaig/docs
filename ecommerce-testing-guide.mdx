@@ -1,0 +1,130 @@
+---
+title: "E-commerce Testing Guide"
+description: "Practical, reliable example tests for the journeys that matter most in a store"
+---
+
+This guide collects realistic example tests for the flows that earn (or lose) money
+in an online store. Each is written the way a careful tester would — one action or
+check per step, exact texts quoted, and no mid-test URL navigation.
+
+<Tip>
+  These are starting points. Replace the quoted labels with your store's exact button
+  and heading text. Many of these flows also exist as ready-made
+  [templates](/test-templates).
+</Tip>
+
+## Writing tips that make tests reliable
+
+<CardGroup cols={2}>
+  <Card title="One action or check per step" icon="list-check">
+    Don't combine a click and an assertion in one line. Keep
+    [Verify/Check](/verify-vs-check) steps separate from actions.
+  </Card>
+  <Card title="Quote exact texts" icon="quote-left">
+    Put button and label text in quotes — `Click 'Add to cart'` — so the agent targets
+    the right element.
+  </Card>
+  <Card title="Add scroll steps" icon="arrows-up-down">
+    The agent sees what a shopper sees. Scroll to off-screen content before acting on it.
+  </Card>
+  <Card title="Don't navigate by URL mid-test" icon="link-slash">
+    Set the start URL on the test; move around by clicking links, not "go to URL" steps.
+  </Card>
+</CardGroup>
+
+## Price consistency: listing → product → cart
+
+Catch a price that changes between pages using a [runtime variable](/variables):
+
+```text
+Open a product collection page
+Remember the price of the first product as {listing_price}
+Open that product's page
+Verify the product page price equals {listing_price}
+Select any required variant and click 'Add to cart'
+Open the cart
+Verify the cart line price equals {listing_price}
+```
+
+## Cart quantity and totals
+
+```text
+Add a product to the cart
+Open the cart
+Increase the quantity of the cart line to 2
+Verify the line quantity shows 2
+Verify the line total updates to reflect 2 units
+Remove the product from the cart
+Verify the cart is empty or the item is no longer listed
+```
+
+## Coupon / discount code
+
+```text
+Add a product to the cart
+Open the cart
+Remember the order total as {total_before}
+Enter a discount code and apply it
+Verify a discount line appears
+Check that the order total is lower than {total_before}
+```
+
+## Checkout up to payment (never pay)
+
+<Warning>
+  Stop before submitting payment. Never enter real card details or place a real order
+  on a production store.
+</Warning>
+
+```text
+Add a product to the cart
+Open the cart and click 'Checkout'
+Fill in the contact email with a test email address
+Fill in the shipping address with test details
+Continue to the shipping method step
+Select a shipping method if one is required
+Continue to the payment step
+Verify the payment step is shown
+Stop here and do not submit any payment
+```
+
+## Search
+
+```text
+Click the search box
+Type 't-shirt' into the search box and submit
+Verify a search results page is shown
+Verify at least one product result is displayed
+Verify the results look relevant to 't-shirt'
+```
+
+## Filters and sorting
+
+```text
+Open a product collection page
+Verify multiple products are listed
+Apply a price-range filter
+Verify the product list updates to reflect the filter
+Change the sort order to 'Price: low to high'
+Verify the first product is no more expensive than the last
+```
+
+## Mobile viewport
+
+Set the test's viewport to a phone size (for example 390×844), then:
+
+```text
+Verify the homepage loads on a mobile screen
+Open the mobile navigation menu (hamburger icon)
+Verify the navigation links are visible
+Navigate to a product collection by clicking a category
+Open a product and select any required variant
+Click 'Add to cart'
+Verify the cart count increases
+```
+
+<Note>
+  Run any of these across many data variants — coupons, search terms, countries —
+  with [scenario tables](/scenario-tables), and schedule them to run automatically
+  with [scheduling](/scheduling).
+</Note>
