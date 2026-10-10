@@ -87,6 +87,30 @@ title: "Common Pitfalls When Writing Tests in Testavi"
       Remember that the agent sees only what a human sees. Include scroll instructions to ensure consistent element visibility.
     </Info>
   </Accordion>
+  <Accordion title="5. Over-handling cookie banners and popups">
+    **What happens:**
+
+    Authors add extra steps to close every cookie banner or newsletter popup, which
+    makes tests longer and can misfire.
+
+    **What to do:**
+
+    Testavi automatically dismisses common cookie/consent banners and newsletter
+    modals before actions and before Verify steps. Only add a
+    [conditional step](/conditional-steps) ("If … otherwise skip") for an optional
+    element that is specific to your store and not caught automatically.
+  </Accordion>
+  <Accordion title="6. Using Verify when a soft Check is enough (and vice-versa)">
+    **What happens:**
+
+    A `Verify` on a variable detail (a promo banner that only shows sometimes) makes
+    the test flaky; a `Check` on something critical lets a real bug slip through.
+
+    **What to do:**
+
+    Use **Verify** (hard) for things that must be true and **Check** (soft) for
+    nice-to-haves. See [Verify vs Check](/verify-vs-check).
+  </Accordion>
 </AccordionGroup>
 
 ## ✅ Authoring Do's & Don'ts
@@ -97,3 +121,8 @@ title: "Common Pitfalls When Writing Tests in Testavi"
 | Mix actions and verifications    | Keep actions and checks in separate steps                    |
 | Use "Go to URL" mid-test         | Set the start URL in test settings                           |
 | Omit scroll instructions         | Explicitly include scroll steps before actions/verifications |
+
+<Tip>
+  Next: learn [Verify vs Check](/verify-vs-check), [Variables](/variables), and read
+  the [e-commerce testing guide](/ecommerce-testing-guide) for reliable example tests.
+</Tip>

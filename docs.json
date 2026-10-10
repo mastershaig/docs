@@ -38,6 +38,56 @@
               "discrete-actions",
               "javascript-actions"
             ]
+          },
+          {
+            "group": "Writing Tests",
+            "pages": [
+              "verify-vs-check",
+              "conditional-steps",
+              "variables",
+              "language-locale-testing"
+            ]
+          },
+          {
+            "group": "Scenario Tables",
+            "pages": [
+              "scenario-tables"
+            ]
+          },
+          {
+            "group": "Templates",
+            "pages": [
+              "test-templates"
+            ]
+          },
+          {
+            "group": "Running Tests",
+            "pages": [
+              "suites-and-runs",
+              "environments-and-secrets",
+              "scheduling",
+              "notifications"
+            ]
+          },
+          {
+            "group": "Results & Debugging",
+            "pages": [
+              "run-results",
+              "fast-re-runs"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "api-keys",
+              "mcp-server"
+            ]
+          },
+          {
+            "group": "E-commerce Guide",
+            "pages": [
+              "ecommerce-testing-guide"
+            ]
           }
         ]
       }

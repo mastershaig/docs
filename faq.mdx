@@ -8,12 +8,14 @@ Check out [**this page**](#), where we lead you through this. Essentially, we sa
 
 ## How can I debug tests?
 
-- Agent Logs: The agent provides a step-by-step analysis for each action it performs
-- Full Browser Observability
-  - Video Replay: View the entire test run across all tabs
-  - Console and Network Logs: Get real-time access to console and network log
+The [run page](/run-results) is built for this:
 
-Bug Analysis: Bugs are also directly surfaced to you by Testavi with an explanation :)
+- **"What went wrong"**: a plain-English analysis that classifies the failure as a
+  product bug, a test issue, or an environment issue, with expected vs. actual.
+- **Step timeline + video**: click a step to seek the video; see before/after
+  screenshots for the failed step.
+- **Console & network panels**: browser logs for the run, with filters.
+- **Share links**: a public, no-login link to a run for Slack, Jira, or a PR.
 
 ## How can I edit tests?
 
@@ -44,3 +46,39 @@ We currently don't offer an on-prem solution. All our tests are running in the c
 ## How do you run tests?
 
 We run tests on our deployed cloud instance against the test URL you specify. It work on any deployed URLs — including Ephemeral URLs generated in your CI.
+
+## Can I run the same test with different data?
+
+Yes — use a [scenario table](/scenario-tables). Write the test once with `{{column}}`
+placeholders, add a row per data variant (coupon codes, search terms, countries), and
+run them all as a matrix. You can run all rows, selected rows, or just re-run the
+failed ones.
+
+## Can I test my store in other languages or currencies?
+
+Yes. Set a [locale, timezone, and geolocation](/language-locale-testing) per test,
+environment, or scenario row, and assert on the result — "Verify the page is in
+German", "Verify prices are shown in EUR", or check for untranslated English text.
+
+## How do environments and secrets work?
+
+Each suite can have several [environments](/environments-and-secrets) (Production,
+Staging, …) with a base URL, variables, and secrets. Secrets are encrypted at rest,
+masked in evidence, and the API only ever returns secret names — never values.
+
+## Can I schedule tests and get notified?
+
+Yes. [Schedule](/scheduling) a suite on an interval, at a time of day (with
+timezone), or on a cron expression. Get one summary per suite run via
+[Slack, email, or a webhook](/notifications).
+
+## Why are re-runs so fast?
+
+On a re-run, steps that passed before are replayed deterministically and self-heal if
+the page changed; only **Verify** steps are re-evaluated fresh. See
+[Fast re-runs](/fast-re-runs). Tip: end every test with a Verify step.
+
+## Can I use Testavi from an AI assistant or scripts?
+
+Yes. Create an [API key](/api-keys) and use the [MCP server](/mcp-server) from Claude
+Code, Claude Desktop, or Cursor to author, run, and debug tests.
