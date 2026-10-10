@@ -13,8 +13,8 @@ test once with `{{column}}` placeholders, add a row per case, and run them all.
 ## Create a table
 
 <Steps>
-  <Step title="Open the test's scenario table">
-    Open the test in the editor and go to its **Scenario table** section to create a table.
+  <Step title="Open the test's Scenarios tab">
+    Open the test in the editor and go to the **Scenarios** tab to create a table.
   </Step>
   <Step title="Add columns">
     Each column becomes a `{{column}}` variable. Use **Add column** to define them —
@@ -56,15 +56,16 @@ the **row wins** on a name collision.
 
 ## Generate scenarios with AI
 
-Use **generate scenarios** to have Testavi propose rows for your table — a quick way
+Use **AI: generate scenarios** to have Testavi propose rows for your table — a quick way
 to get a spread of realistic data variants to start from. Review the AI-proposed
 scenarios and keep the ones you want.
 
 ## Run rows
 
-You can run the whole table or just part of it:
+Once the table is saved, the test page's main run button becomes **Run N scenarios**
+and starts every enabled row. Inside the Scenarios tab you can also run part of it:
 
-- **Run all** — every row runs, each as its own execution.
+- **Run all rows** — every enabled row runs, each as its own execution.
 - **Run selected** — run only the rows you tick.
 
 Single-test [schedules](/scheduling) expand scenario rows the same way a manual run
@@ -78,7 +79,7 @@ other run (see [Reading run results](/run-results)).
 
 ## Re-run failed rows
 
-When some rows fail, use **Re-run failed** to run only those rows again, keeping the
+When some rows fail, use **Re-run failed rows** to run only those rows again, keeping the
 rest of the matrix intact. If a selected row was disabled or deleted since the last
 run, nothing runs for it and that scenario run is marked failed rather than running
 with no values.
