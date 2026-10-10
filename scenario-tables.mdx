@@ -1,0 +1,89 @@
+---
+title: "Scenario Tables"
+description: "Run one test across many data variants — coupons, languages, addresses — as a matrix"
+---
+
+A scenario table lets you run **one** test across **many** data variants instead of
+cloning the test for each case. Each row is a set of values; the test runs once per
+row, and the results come back as a matrix.
+
+Think of coupon codes, shipping countries, languages, or search terms: write the
+test once with `{{column}}` placeholders, add a row per case, and run them all.
+
+## Create a table
+
+<Steps>
+  <Step title="Open Scenario Tables">
+    Open **Scenario Tables** from the sidebar and create a table for your test.
+  </Step>
+  <Step title="Add columns">
+    Each column becomes a `{{column}}` variable. Use **Add column** to define them —
+    for example `coupon_code`, `email`, or `search_term`. Some column names are
+    reserved for locale settings (`locale`, `timezone`, `country`); see
+    [Language & locale testing](/language-locale-testing).
+  </Step>
+  <Step title="Add rows">
+    Give each row a name and fill in the column values. Each row runs as its own
+    execution.
+  </Step>
+</Steps>
+
+## Reference columns in steps
+
+Use the column name as a double-brace variable in your step text:
+
+```text
+Type {{coupon_code}} into the discount field and apply it
+Search for {{search_term}}
+Fill in the contact email with {{email}}
+```
+
+Row values are overlaid on top of any [environment variables](/environments-and-secrets) —
+the **row wins** on a name collision.
+
+## Paste from a spreadsheet, import/export CSV
+
+<CardGroup cols={2}>
+  <Card title="Paste from a spreadsheet" icon="clipboard">
+    Copy a block of cells from Google Sheets or Excel and paste it straight into the
+    table — rows and columns are preserved.
+  </Card>
+  <Card title="CSV / TSV import & export" icon="file-csv">
+    **Import** a CSV or TSV file to create rows in bulk, or **Export** the current
+    table to CSV to edit it elsewhere.
+  </Card>
+</CardGroup>
+
+## Generate scenarios with AI
+
+Use **generate scenarios** to have Testavi propose rows for your table — a quick way
+to get a spread of realistic data variants to start from. Review the AI-proposed
+scenarios and keep the ones you want.
+
+## Run rows
+
+You can run the whole table or just part of it:
+
+- **Run all** — every row runs, each as its own execution.
+- **Run selected** — run only the rows you tick.
+
+Single-test [schedules](/scheduling) expand scenario rows the same way a manual run
+does.
+
+## The results matrix
+
+After a run, the matrix shows one cell per row with its result and timing. Open a
+cell to see that row's full run — verdict, steps, video and logs — just like any
+other run (see [Reading run results](/run-results)).
+
+## Re-run failed rows
+
+When some rows fail, use **Re-run failed** to run only those rows again, keeping the
+rest of the matrix intact. If a selected row was disabled or deleted since the last
+run, nothing runs for it and that scenario run is marked failed rather than running
+with no values.
+
+<Tip>
+  Re-running failed rows is the fast way to confirm a fix without paying for the
+  whole matrix again.
+</Tip>
