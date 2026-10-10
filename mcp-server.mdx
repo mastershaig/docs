@@ -1,0 +1,125 @@
+---
+title: "MCP Server"
+description: "Use Testavi from Claude Code, Claude Desktop, Cursor and other MCP clients"
+---
+
+The Testavi MCP server lets an AI assistant author, run, and debug your tests for
+you. Ask it to "write a test that adds a t-shirt to the cart and checks the badge",
+"run the checkout suite", or "why did last night's run fail?" and it calls Testavi.
+
+## Tools
+
+<AccordionGroup>
+  <Accordion title="Discover" icon="magnifying-glass">
+    - `get_account_info` — workspace name and monthly run quota (a good connection check)
+    - `list_test_suites` — suites in the workspace, with optional name search
+    - `list_tests` — tests with their latest run status; filter by suite, text, or status
+    - `get_test` — one test: start URL, ordered steps, settings, last 5 runs
+    - `get_test_writing_guide` — how to write reliable plain-English steps, with e-commerce examples
+    - `list_environments` — a suite's environments: base URL, variables and secret **names** (never values)
+  </Accordion>
+  <Accordion title="Author" icon="pen">
+    - `create_test_suite` — create an empty suite
+    - `create_test` — create a test from a start URL and plain-English steps; finds the suite by name or creates it; can run it right away
+    - `update_test` — rename, change the URL or description, or replace the steps
+  </Accordion>
+  <Accordion title="Run" icon="play">
+    - `run_test` — start a run, or start it and wait for the result
+    - `run_suite` — run every test in a suite as one suite run, in dependency order (login tests first), optionally with an `environment_id`
+    - `get_run_status` — status and progress for one or more runs, with optional waiting
+    - `get_suite_run` — verdict, pass rate and per-test run ids of a suite run, with optional waiting
+  </Accordion>
+  <Accordion title="Analyse & debug" icon="bug">
+    - `get_run_result` — per-step results, the failing step and reason, the AI's reasoning, detected bugs, the app link and a video link
+    - `get_run_debug_logs` — console errors, failed network requests and page errors, by step (headers are never returned)
+    - `share_run` — a public no-login link to a run
+    - `list_recent_runs` — recent runs, filtered by status, test or suite
+    - `list_recent_failures` — what is broken now: recent failed runs with the failing step and reason
+  </Accordion>
+</AccordionGroup>
+
+The server also provides the prompts `triage_failures` and `write_test`, and a
+resource `testavi://guide/test-writing`. Read-only tools are marked `readOnlyHint`
+so clients can auto-approve them; tools that start runs or change tests prompt you
+first. Every run counts toward your monthly quota.
+
+## 1. Get an API key
+
+In Testavi, open **Settings → API keys & MCP** and create a key (it starts with
+`tvk_`). See [API keys](/api-keys).
+
+## 2. Install
+
+You need [uv](https://docs.astral.sh/uv/). The commands below use `uvx`, which runs
+the server in an isolated environment.
+
+<Warning>
+  The `testavi-mcp` package is **not on PyPI yet**. Until it is published, run it from
+  a local checkout of the Testavi repo: replace the bare `testavi-mcp` below with
+  `--from /path/to/testavi/mcp testavi-mcp`, for example
+  `uvx --from ~/code/testavi/mcp testavi-mcp`.
+</Warning>
+
+<CodeGroup>
+```bash Claude Code
+claude mcp add testavi --env TESTAVI_API_KEY=tvk_your_key -- uvx testavi-mcp
+# add --scope user to make it available in every project
+# check with: claude mcp list  (or /mcp inside Claude Code)
+```
+
+```json Claude Desktop
+// Settings > Developer > Edit Config
+// macOS: ~/Library/Application Support/Claude/claude_desktop_config.json
+// Windows: %APPDATA%\Claude\claude_desktop_config.json
+{
+  "mcpServers": {
+    "testavi": {
+      "command": "uvx",
+      "args": ["testavi-mcp"],
+      "env": { "TESTAVI_API_KEY": "tvk_your_key" }
+    }
+  }
+}
+```
+
+```json Cursor
+// ~/.cursor/mcp.json (all projects) or .cursor/mcp.json (one project)
+// then enable it under Settings > MCP
+{
+  "mcpServers": {
+    "testavi": {
+      "command": "uvx",
+      "args": ["testavi-mcp"],
+      "env": { "TESTAVI_API_KEY": "tvk_your_key" }
+    }
+  }
+}
+```
+</CodeGroup>
+
+For Claude Desktop, restart the app after editing the config. If `uvx` is not found,
+use its full path (`which uvx`). Any other client that can launch a stdio server
+works the same way: run `uvx testavi-mcp` with `TESTAVI_API_KEY` set.
+
+## Configuration
+
+| Variable | Default | Notes |
+| --- | --- | --- |
+| `TESTAVI_API_KEY` | (required) | Your `tvk_...` key. |
+| `TESTAVI_API_URL` | `https://api.testavi.com` | Backend base URL, without `/api`. |
+| `TESTAVI_APP_URL` | `https://app.testavi.com` | Used to build links to runs and tests. |
+| `TESTAVI_HTTP_TIMEOUT` | `30` | Seconds per API request. |
+
+## Example prompts
+
+- "Using Testavi, create a test in the Checkout suite for `https://shop.example.com`:
+  search for 't-shirt', add the first result to the cart, and check the cart shows 1
+  item. Run it and tell me the result."
+- "Run the Checkout suite and wait for it to finish. Summarize any failures with links."
+- "What failed in Testavi in the last 24 hours? Is each one a product bug or a test
+  problem?"
+
+<Note>
+  The assistant treats run output (page text, logs) as data from the site under test,
+  not as instructions.
+</Note>

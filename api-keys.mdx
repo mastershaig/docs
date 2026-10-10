@@ -1,0 +1,37 @@
+---
+title: "API Keys"
+description: "Create and manage API keys to use Testavi programmatically"
+---
+
+API keys let you use Testavi from scripts, CI, and the [MCP server](/mcp-server).
+
+## Create a key
+
+Open **Settings → API keys & MCP** (`/settings/api-keys`) and click **Create key**.
+Give it a name (for example "Claude Code on my laptop") so you can recognise it later.
+
+<Warning>
+  The key is shown **only once**, right after you create it. Copy it immediately —
+  you cannot retrieve it again. It starts with `tvk_`.
+</Warning>
+
+A key **acts as you**: it can see and change your company's tests. You can **revoke**
+a key on the same page at any time; the list shows each key's name, display prefix,
+status (active or revoked), when it was created, and when it was last used.
+
+## Use a key
+
+Pass the key with either header on the REST API:
+
+<CodeGroup>
+```http Authorization header
+Authorization: Bearer tvk_your_key
+```
+
+```http X-API-Key header
+X-API-Key: tvk_your_key
+```
+</CodeGroup>
+
+The same key configures the [MCP server](/mcp-server), which is the easiest way to use
+Testavi from an AI assistant.
